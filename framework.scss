@@ -1,0 +1,439 @@
+// 1-COLORS
+$colors:(
+    c-blue:#1d1dc3,
+    c-red:#e90c0c,
+    c-purple:#7f0ce9,
+    c-green:#18b612,
+    c-yellow:#e3cf0d,
+    c-orange:#f7760a,
+    c-dark:#0b0b0b,
+
+);
+
+@each $color,$value in $colors{
+    .#{$color} {
+        color:$value
+    }
+}
+
+@each $color, $value in $colors {
+    $short_name: str-slice(#{'$color'}, 3);
+    .c-#{$short_name} {
+      color: $value;
+    }
+  }
+  
+  // 2-BUTTON
+
+  $button-border-radius: 6px;
+  $button-padding: 12px 20px;
+  $button-font-size: 18px;
+  $button-font-weight: bold;
+  $button-transition: all 0.4s ease;
+  
+
+@each $color, $value in $colors {
+    .button.button-#{$color} {
+      display: inline-block;
+      padding: $button-padding;
+      font-size: $button-font-size;
+      font-weight: $button-font-weight;
+      border-radius: $button-border-radius;
+      color: #fff; 
+      background-color: $value; 
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: $button-transition;
+  
+      &:hover {
+        background-color: darken($value, 15%); 
+      }
+    }
+  }  
+
+
+  // 3- TYPE
+
+
+$kanit-font-family: 'Kanit', sans-serif;
+$text-color:black; 
+
+
+$baslik-sizes: (
+    h1: 40px,
+    h2: 34px,
+    h3: 28px,
+    h4: 24px,
+    h5: 22px,
+    h6: 20px
+);
+
+
+$baslik-styles: (
+    font-weight: bold,
+    line-height: 1.5
+);
+
+
+$paragraf-size: 16px;
+$paragraf-styles: (
+    line-height: 1.5,
+    font-weight:bold
+);
+
+
+@each $heading, $size in $baslik-sizes {
+    #{$heading} {
+        font-family: $kanit-font-family;
+        color: $text-color;
+        font-size: $size;
+        
+        @each $property, $value in $baslik-styles {
+            #{$property}: $value;
+        }
+    }
+}
+
+p {
+    font-family: $kanit-font-family;
+    color: $text-color;
+    font-size: $paragraf-size;
+    
+    @each $property, $value in $paragraf-styles {
+        #{$property}: $value;
+    }
+}
+
+// 4- CLOSE BUTTON
+
+.close-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: #333;
+   
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover::before,
+  &:hover::after {
+    background-color: #0b0b0b;
+  }
+}
+
+
+
+
+
+
+
+// 5 CARDS
+
+.card {
+  background-color: grey;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 20px;
+  width: 300px;
+
+  &-main-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  &-second-header {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #554f4f;
+    margin-bottom: 10px;
+  }
+
+  &-text {
+    font-size: 1rem;
+    color: #333;
+  }
+}
+
+
+// 6-LIST GROUP
+
+.list-group {
+  list-style: none;
+  border: 2px solid white;
+  padding:0;
+  width: 25%;
+  background-color: transparent;
+  
+
+  & .list-item {
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    margin: 10px;
+    font-family: $kanit-font-family;
+    padding-top: 5px;
+
+    
+  }
+}
+
+
+
+// 7-BREADCRUMB
+
+.breadcrumb {
+  background-color: transparent;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: $kanit-font-family;
+    font-size: larger;
+
+  li {
+    display: inline-block;
+    margin: 0;
+
+    
+
+  &:not(:last-child)::after {
+      content: "|";
+      margin: 0 5px;
+  }
+
+  a {
+    text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+
+// 8 - NAVBAR S
+
+
+
+.navbar-dark {
+  background-color: #0b0b0b;
+  color: white;
+  font-family: $kanit-font-family;
+
+  &.navbar {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .logo {
+    padding-top: 15px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    
+  }
+
+  ul a{
+    text-decoration: none;
+    color: white;
+  }
+
+  ul a:hover{
+    color: blue;
+  }
+
+  .search-box {
+    padding-top: 12px;
+  }
+
+  .search-box input{
+    height: 3vh;
+  }
+
+  .search-box button{
+    height: 3.5vh;
+    width: 4vw;
+  }
+
+  ::placeholder{
+    color: #0b0b0b;
+  }
+}
+
+
+.navbar-light {
+  background-color: #f4f4f4; 
+  color: #0b0b0b;
+  font-family: $kanit-font-family;
+
+  &.navbar {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+
+  .logo {
+    padding-top: 15px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+  }
+
+  ul a{
+    color: #0b0b0b;
+    text-decoration: none;
+  }
+
+  ul a:hover{
+    color: blue;
+  }
+
+  .search-box {
+    padding-top: 12px;
+  }
+
+  .search-box input{
+    height: 3vh;
+  }
+
+  .search-box button{
+    height: 3.5vh;
+    width: 4vw;
+  }
+
+}
+
+
+// 9 -IMAGE CARDS (CAPS)
+
+.cap {
+  width: 450px;
+  border: 1.5px solid gray;
+  display: flex; 
+
+  img {
+    width: 100%;
+    display: block;
+
+  }
+
+  .cap-content {
+    padding: 10px;
+  }
+
+  .cap-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .cap-text {
+    font-size: 1rem;
+    color: black;
+  }
+}
+
+
+// 10-HAMBURGER MENU
+
+.hamburger-menu {
+  .menu-toggle {
+    display: block; 
+  }
+
+  .menu {
+    display: none; // Varsayılan olarak gizli
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+      font-family: 'Kanit', sans-serif;;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  
+  &.active {
+    .menu {
+      display: flex;
+    }
+  }
+}
+
+
+
+// GRID SYSTEM
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  
+}
+
+// Satırlar
+.row {
+  border: 1px solid transparent; 
+  font-size: 'Kanit', sans-serif;
+}
+
+
+.col {
+  padding: 10px; 
+  box-sizing: border-box;
+  border: 1px solid black;
+  
+}
+
+
+
+
+
+
